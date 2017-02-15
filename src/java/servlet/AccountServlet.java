@@ -16,13 +16,31 @@
 
 package servlet;
 
+import java.io.IOException;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.Account;
 
 /**
  * Provides an Account Balance and Basic Withdrawal/Deposit Operations
  */
 @WebServlet("/account")
 public class AccountServlet extends HttpServlet {
+ Account accnt = new Account();
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.getWriter().write(String.valueOf(accnt.getBalance())); 
+    }
     
 }
