@@ -32,7 +32,20 @@ public class AccountServlet extends HttpServlet {
  Account accnt = new Account();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+         if(req.getParameter("withdraw")!= null)
+        {
+            double withdraw = Double.parseDouble(req.getParameter("withdraw"));
+            accnt.withdraw(withdraw);
+        }
+        else if(req.getParameter("deposit")!= null)
+        {
+            double deposit = Double.parseDouble(req.getParameter("deposit"));
+            accnt.deposit(deposit);
+        }
+        else
+        {
+            accnt.close();
+        }
     }
 
     @Override
